@@ -30,13 +30,11 @@ class ListViewController: UIViewController {
   
     func callViewModel() {
         self.viewModel = CallsViewModel()
-        
         viewModel.reloadList = {[weak self] () in
             DispatchQueue.main.async {
                 self!.tableView.reloadData()
             }
         }
-        
     }
 
 }

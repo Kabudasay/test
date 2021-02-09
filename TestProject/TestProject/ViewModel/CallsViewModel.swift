@@ -17,7 +17,6 @@ protocol TableViewViewModelType {
 class CallsViewModel: NSObject, TableViewViewModelType {
 
     private var apiService: DataFetcherServices!
-    
     private var selectedIndexPath: IndexPath?
     
     var arrayOfCalls : [Request] = []{
@@ -41,36 +40,7 @@ class CallsViewModel: NSObject, TableViewViewModelType {
             self!.arrayOfCalls = json.requests!
         }
     }
-    
-    
-    func saveToJsonFile(array: CallsModel) {
-        // Get the url of Persons.json in document directory
-        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = documentDirectoryUrl.appendingPathComponent("CallsModel.json")
 
-        let personArray =  [["person": ["name": "Dani", "age": "24"]], ["person": ["name": "ray", "age": "70"]]]
-
-        // Create a write-only stream
-        guard let stream = OutputStream(toFileAtPath: fileUrl.path, append: false) else { return }
-        stream.open()
-        defer {
-            stream.close()
-        }
-
-        // Transform array into data and save it into file
-        var error: NSError?
-        JSONSerialization.writeJSONObject(personArray, to: stream, options: [], error: &error)
-
-        // Handle error
-        if let error = error {
-            print(error)
-        }
-    }
-    
-    
-    
-    
-    
     func numberOfRows() -> Int {
         return arrayOfCalls.count
     }

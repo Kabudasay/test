@@ -12,10 +12,7 @@ protocol DetailViewModelType {
 }
 
 class DetailViewModel: DetailViewModelType {
-    
-    
-    //var name: String = ""
-    
+
     private var json: Request
     
     var name: String {
